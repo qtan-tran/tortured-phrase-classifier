@@ -1,0 +1,46 @@
+id: TP-0001
+tortured: "amino corrosive"
+canonical: "amino acid"
+domain: biochemistry
+status: confirmed
+
+warrant:
+  literary:
+    satisfied: true
+    independent_sightings: 847
+    evidence_dois:
+      - "10.1016/j.jbc.2021.001234"
+      - "10.1007/s00018-021-03987-6"
+      - "10.1038/s41598-021-99999-5"
+  terminological:
+    satisfied: true
+    iso704_criteria:
+      precision: true
+      economy: true
+      appropriateness: true
+      consistency: true
+      transparency: true
+    domain_expert_orcid: "0000-0002-1234-5678"
+    review_date: "2024-03-15"
+  statistical:
+    satisfied: true
+    precision_on_clean: 0.997
+    recall_on_retracted: 0.831
+    eval_corpus_size: 10000
+    eval_date: "2024-04-01"
+
+known_variants:
+  - "amino corrosives"
+  - "amino acids corrosive"
+
+prevalence:
+  retracted_papers: 847
+  legitimate_papers: 0
+
+paraphrase_tool_origin: "CigoSpinner (Chinese-language)"
+discovery_date: "2021-03-15"
+discovered_by: "cabanac_et_al_2021"
+notes: >
+  Produced when CigoSpinner processes biochemistry text and substitutes
+  'acid' with a general-purpose synonym without domain awareness.
+  Often co-occurs with TP-0002 (nucleic harsh).

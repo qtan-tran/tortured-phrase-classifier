@@ -1,0 +1,47 @@
+id: TP-0010
+tortured: "fake neural organization"
+canonical: "artificial neural network"
+domain: computing
+status: candidate
+
+warrant:
+  literary:
+    satisfied: true
+    independent_sightings: 1203
+    evidence_dois:
+      - "10.1016/j.neunet.2021.000001"
+      - "10.1109/tnnls.2021.000001"
+      - "10.1007/s10462-021-00001-x"
+  terminological:
+    satisfied: true
+    iso704_criteria:
+      precision: true
+      economy: true
+      appropriateness: true
+      consistency: true
+      transparency: false
+    domain_expert_orcid: "0000-0003-9876-5432"
+    review_date: "2024-02-20"
+  statistical:
+    satisfied: true
+    precision_on_clean: 0.998
+    recall_on_retracted: 0.872
+    eval_corpus_size: 10000
+    eval_date: "2024-04-01"
+
+known_variants:
+  - "fake neural organizations"
+  - "counterfeit neural network"
+  - "sham neural network"
+
+prevalence:
+  retracted_papers: 1203
+  legitimate_papers: 0
+
+paraphrase_tool_origin: "SpinBot / SCIgen-adjacent tools"
+discovery_date: "2021-01-10"
+discovered_by: "cabanac_et_al_2021"
+notes: >
+  One of the highest-frequency tortured phrases in computing literature.
+  'Artificial' → 'fake/counterfeit/sham'; 'network' → 'organization'.
+  Both substitutions chosen by synonym lookup without domain awareness.

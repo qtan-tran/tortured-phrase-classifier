@@ -1,0 +1,167 @@
+name: CI — Signal Registry Validation & Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # -----------------------------------------------------------------------
+  # Job 1: Validate the signal registry (runs on all PRs touching signals/)
+  # -----------------------------------------------------------------------
+  validate-registry:
+    name: Validate Signal Registry
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install core dependencies (no ML models)
+        run: pip install pyyaml jsonschema
+
+      - name: Validate YAML schema
+        run: |
+          python -c "
+          import json, yaml, jsonschema, sys
+          from pathlib import Path
+          schema = json.loads(Path('signals/schema.json').read_text())
+          errors = []
+          for f in Path('signals/phrases').rglob('*.yaml'):
+              try:
+                  raw = yaml.safe_load(f.read_text())
+                  jsonschema.validate(raw, schema)
+              except jsonschema.ValidationError as e:
+                  errors.append(f'{f.name}: {e.message}')
+          if errors:
+              for e in errors: print('ERROR:', e)
+              sys.exit(1)
+          print(f'Schema valid: {len(list(Path(\"signals/phrases\").rglob(\"*.yaml\")))} signals')
+          "
+
+      - name: Check for duplicate signal IDs
+        run: |
+          python -c "
+          import yaml, sys
+          from pathlib import Path
+          seen, dupes = set(), []
+          for f in Path('signals/phrases').rglob('*.yaml'):
+              raw = yaml.safe_load(f.read_text())
+              sid = raw.get('id', '')
+              if sid in seen: dupes.append(f'{f.name}: duplicate ID {sid}')
+              seen.add(sid)
+          if dupes:
+              for d in dupes: print('ERROR:', d)
+              sys.exit(1)
+          print(f'No duplicate IDs in {len(seen)} signals')
+          "
+
+      - name: Validate warrant consistency for confirmed signals
+        run: |
+          python -c "
+          import yaml, sys
+          from pathlib import Path
+          errors = []
+          PREC_MIN, RECALL_MIN, SIGHTING_MIN = 0.95, 0.70, 3
+          for f in Path('signals/phrases').rglob('*.yaml'):
+              raw = yaml.safe_load(f.read_text())
+              if raw.get('status') != 'confirmed': continue
+              w = raw.get('warrant', {})
+              lit = w.get('literary', {})
+              ter = w.get('terminological', {})
+              sta = w.get('statistical', {})
+              if not lit.get('satisfied'): errors.append(f'{f.name}: literary not satisfied')
+              if lit.get('independent_sightings', 0) < SIGHTING_MIN:
+                  errors.append(f'{f.name}: sightings < {SIGHTING_MIN}')
+              if not ter.get('satisfied'): errors.append(f'{f.name}: terminological not satisfied')
+              if ter.get('domain_expert_orcid') is None: errors.append(f'{f.name}: no domain expert ORCID')
+              if not sta.get('satisfied'): errors.append(f'{f.name}: statistical not satisfied')
+              prec = sta.get('precision_on_clean')
+              rec  = sta.get('recall_on_retracted')
+              if prec is not None and prec < PREC_MIN:
+                  errors.append(f'{f.name}: precision {prec:.3f} < {PREC_MIN}')
+              if rec is not None and rec < RECALL_MIN:
+                  errors.append(f'{f.name}: recall {rec:.3f} < {RECALL_MIN}')
+          if errors:
+              for e in errors: print('ERROR:', e)
+              sys.exit(1)
+          print('All confirmed signals pass warrant gates')
+          "
+
+  # -----------------------------------------------------------------------
+  # Job 2: Python tests (unit tests, no heavy ML models)
+  # -----------------------------------------------------------------------
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: validate-registry
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install package (no ML extras)
+        run: |
+          pip install pyahocorasick pyyaml jsonschema numpy scikit-learn \
+                      pandas pytest pytest-cov rich typer fastapi uvicorn
+          pip install -e . --no-deps
+
+      - name: Run tests (excluding ML-dependent tests)
+        run: |
+          pytest tests/ -v \
+            --ignore=tests/test_embedding.py \
+            --ignore=tests/test_mlm.py \
+            -k "not embedding and not mlm and not perplexity" \
+            --cov=tpc --cov-report=xml
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          file: coverage.xml
+        continue-on-error: true
+
+  # -----------------------------------------------------------------------
+  # Job 3: Weekly benchmark (scheduled, uses ML models)
+  # -----------------------------------------------------------------------
+  weekly-benchmark:
+    name: Weekly Benchmark (Scheduled)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    needs: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install full dependencies (with ML models)
+        run: pip install -e ".[dev]"
+
+      - name: Run full benchmark
+        run: |
+          python -m tpc.evaluation.benchmark \
+            --max-papers 500 \
+            --output benchmark_results.json
+        env:
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: benchmark_results.json

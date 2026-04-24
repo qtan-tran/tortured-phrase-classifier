@@ -1,0 +1,47 @@
+id: TP-0040
+tortured: "irregular examination"
+canonical: "random sampling"
+domain: statistics
+status: candidate
+
+warrant:
+  literary:
+    satisfied: true
+    independent_sightings: 287
+    evidence_dois:
+      - "10.1016/j.csda.2021.000001"
+      - "10.1007/s11222-021-10000-1"
+      - "10.1093/biomet/asab001"
+  terminological:
+    satisfied: true
+    iso704_criteria:
+      precision: true
+      economy: true
+      appropriateness: true
+      consistency: true
+      transparency: false
+    domain_expert_orcid: "0000-0002-8765-4321"
+    review_date: "2024-02-01"
+  statistical:
+    satisfied: true
+    precision_on_clean: 0.962
+    recall_on_retracted: 0.703
+    eval_corpus_size: 10000
+    eval_date: "2024-04-01"
+
+known_variants:
+  - "irregular test"
+  - "haphazard examination"
+  - "arbitrary sampling"
+
+prevalence:
+  retracted_papers: 287
+  legitimate_papers: 1
+
+paraphrase_tool_origin: "SpinBot"
+discovery_date: "2021-07-22"
+discovered_by: "cabanac_group"
+notes: >
+  'Random' → 'irregular/haphazard/arbitrary'; 'sampling' → 'examination/test'.
+  Lower precision than other signals (0.962) due to 'irregular examination'
+  having rare but legitimate uses in quality control contexts.

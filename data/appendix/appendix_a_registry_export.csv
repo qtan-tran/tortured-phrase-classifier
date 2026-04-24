@@ -1,0 +1,8 @@
+signal_id,tortured,canonical,domain,status,warrant_literary,warrant_terminological,warrant_statistical,precision_on_clean,recall_on_retracted,retracted_papers,legitimate_papers,discovery_date,paraphrase_tool_origin
+TP-0001,amino corrosive,amino acid,biochemistry,confirmed,True,True,True,0.997,0.831,847,0,2021-03-15,CigoSpinner (Chinese-language)
+TP-0002,nucleic harsh,nucleic acid,biochemistry,confirmed,True,True,True,0.999,0.791,412,0,2021-04-02,CigoSpinner (Chinese-language)
+TP-0010,fake neural organization,artificial neural network,computing,confirmed,True,True,True,0.998,0.872,1203,0,2021-01-10,SpinBot / SCIgen-adjacent
+TP-0011,profound learning,deep learning,computing,confirmed,True,True,True,0.991,0.803,934,2,2021-02-14,Multiple tools
+TP-0020,bosom peril,breast cancer,medicine,confirmed,True,True,True,0.999,0.845,621,0,2021-01-15,SpinBot
+TP-0030,flag to commotion,signal to noise,general,confirmed,True,True,True,0.997,0.789,503,0,2021-01-10,Multiple tools
+TP-0040,irregular examination,random sampling,statistics,confirmed,True,True,True,0.962,0.703,287,1,2021-07-22,SpinBot

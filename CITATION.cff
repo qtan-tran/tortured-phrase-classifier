@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Tortured Phrase Classifier"
+abstract: >
+  A warrant-based, three-layer classification system for detecting tortured phrases
+  as terminological violations in scientific literature. Grounded in Wüsterian
+  terminology theory and warrant-based governance (Beghtol 1986), the system
+  combines exact-match detection against a community-curated YAML registry,
+  embedding-based detection of variant violations, and masked language model
+  perplexity scoring for novel violations. Released as open-source software
+  with a CI-gated, community-extensible signal registry.
+version: 0.1.0
+date-released: "2024-01-01"
+license: Apache-2.0
+repository-code: "https://github.com/your-org/tortured-phrase-classifier"
+keywords:
+  - knowledge organization
+  - research integrity
+  - paper mills
+  - tortured phrases
+  - terminology science
+  - warrant theory
+  - controlled vocabulary
+references:
+  - type: article
+    title: "Terminological Drift and Adversarial Paraphrasing: A Warrant-Based Classification System for Detecting Tortured Phrases as Knowledge Organization Failures"
+    journal: "Knowledge Organization"
+    year: 2025

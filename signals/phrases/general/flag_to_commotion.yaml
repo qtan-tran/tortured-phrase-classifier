@@ -1,0 +1,48 @@
+id: TP-0030
+tortured: "flag to commotion"
+canonical: "signal to noise"
+domain: general
+status: candidate
+
+warrant:
+  literary:
+    satisfied: true
+    independent_sightings: 503
+    evidence_dois:
+      - "10.1016/j.sigpro.2021.000001"
+      - "10.1109/tsp.2021.000001"
+      - "10.1038/s41586-021-00001-x"
+  terminological:
+    satisfied: true
+    iso704_criteria:
+      precision: true
+      economy: true
+      appropriateness: true
+      consistency: true
+      transparency: false
+    domain_expert_orcid: "0000-0002-8765-4321"
+    review_date: "2024-01-20"
+  statistical:
+    satisfied: true
+    precision_on_clean: 0.997
+    recall_on_retracted: 0.789
+    eval_corpus_size: 10000
+    eval_date: "2024-04-01"
+
+known_variants:
+  - "flag to clamor"
+  - "signal to commotion"
+  - "flag-to-commotion proportion"
+  - "flag to clamour"
+
+prevalence:
+  retracted_papers: 503
+  legitimate_papers: 0
+
+paraphrase_tool_origin: "Multiple tools"
+discovery_date: "2021-01-10"
+discovered_by: "cabanac_et_al_2021"
+notes: >
+  The original example from Cabanac & Labbe (2021) that launched
+  systematic tortured phrase research. 'Signal' → 'flag'; 'noise' → 'commotion'.
+  Cross-domain: appears in engineering, biology, and physics papers.

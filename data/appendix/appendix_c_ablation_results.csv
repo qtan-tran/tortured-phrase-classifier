@@ -1,0 +1,2 @@
+combination,corpus,precision,recall,f1,auroc,tp,fp,fn,tn
+L1,positive+negative,1.0,0.0618,0.1164,0.5309,16,0,243,241

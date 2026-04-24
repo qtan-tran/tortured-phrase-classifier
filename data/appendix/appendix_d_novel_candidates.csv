@@ -1,0 +1,4 @@
+rank,span,log_perplexity,confidence,proposed_canonical,domain,expert_assessment,recommended_status,paper_pmid,notes
+1,[to be populated by running notebooks/04_layer3_mlm_perplexity.ipynb],[],[],[],[],pending,candidate,[],Layer 3 top candidate
+2,[to be populated],[],[],[],[],pending,candidate,[],
+3,[to be populated],[],[],[],[],pending,candidate,[],

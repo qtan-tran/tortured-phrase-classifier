@@ -1,0 +1,6 @@
+corpus_name,label,n_papers,n_abstracts,mean_abstract_length_chars,domain_distribution,source,retraction_reason_distribution,notes
+Positive (retracted),retracted,5000,5000,1247,"biochemistry:35% computing:28% medicine:22% statistics:8% other:7%",PubMed E-utilities,"paper mill:61% manipulation:21% plagiarism:18%",Papers retracted for paper mill / manipulation / plagiarism
+Negative (clean),clean,5000,5000,1189,"biochemistry:35% computing:28% medicine:22% statistics:8% other:7%",PubMed E-utilities,N/A,Domain- and year-matched to positive corpus
+Synthetic (WordNet),synthetic_tortured,10000,10000,1189,same as clean,Generated from negative corpus,N/A,WordNet synonym substitution at 15% rate
+Synthetic (back-translation),synthetic_tortured,10000,10000,1201,same as clean,Generated from negative corpus,N/A,EN→ZH→EN back-translation via Helsinki-NLP/opus-mt
+Novel (2024-25),unlabeled,500,500,1156,"computing:40% biochemistry:30% medicine:20% other:10%",PubMed E-utilities,N/A,Papers published Jan 2024–Dec 2025; not in any existing tortured phrase list

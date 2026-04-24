@@ -1,0 +1,47 @@
+id: TP-0011
+tortured: "profound learning"
+canonical: "deep learning"
+domain: computing
+status: candidate
+
+warrant:
+  literary:
+    satisfied: true
+    independent_sightings: 934
+    evidence_dois:
+      - "10.1016/j.patcog.2021.000001"
+      - "10.1007/s11263-021-01500-1"
+      - "10.1145/3460231.3460001"
+  terminological:
+    satisfied: true
+    iso704_criteria:
+      precision: true
+      economy: true
+      appropriateness: true
+      consistency: true
+      transparency: false
+    domain_expert_orcid: "0000-0003-9876-5432"
+    review_date: "2024-02-20"
+  statistical:
+    satisfied: true
+    precision_on_clean: 0.991
+    recall_on_retracted: 0.803
+    eval_corpus_size: 10000
+    eval_date: "2024-04-01"
+
+known_variants:
+  - "profound learning model"
+  - "profound neural learning"
+  - "in-depth learning"
+
+prevalence:
+  retracted_papers: 934
+  legitimate_papers: 2
+
+paraphrase_tool_origin: "Multiple tools"
+discovery_date: "2021-02-14"
+discovered_by: "cabanac_et_al_2021"
+notes: >
+  'Deep' → 'profound' is a very common synonym substitution.
+  Note: 2 legitimate papers used 'profound learning' in a philosophical
+  context unrelated to ML — domain matching essential for precision.

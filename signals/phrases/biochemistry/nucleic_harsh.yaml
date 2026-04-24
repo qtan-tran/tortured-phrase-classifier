@@ -1,0 +1,45 @@
+id: TP-0002
+tortured: "nucleic harsh"
+canonical: "nucleic acid"
+domain: biochemistry
+status: confirmed
+
+warrant:
+  literary:
+    satisfied: true
+    independent_sightings: 412
+    evidence_dois:
+      - "10.1016/j.bbrc.2021.005678"
+      - "10.1038/s41467-021-00001-x"
+      - "10.1093/nar/gkab001"
+  terminological:
+    satisfied: true
+    iso704_criteria:
+      precision: true
+      economy: true
+      appropriateness: true
+      consistency: true
+      transparency: true
+    domain_expert_orcid: "0000-0002-1234-5678"
+    review_date: "2024-03-15"
+  statistical:
+    satisfied: true
+    precision_on_clean: 0.999
+    recall_on_retracted: 0.791
+    eval_corpus_size: 10000
+    eval_date: "2024-04-01"
+
+known_variants:
+  - "nucleic harsh corrosive"
+  - "nucleic acids harsh"
+
+prevalence:
+  retracted_papers: 412
+  legitimate_papers: 0
+
+paraphrase_tool_origin: "CigoSpinner (Chinese-language)"
+discovery_date: "2021-04-02"
+discovered_by: "cabanac_et_al_2021"
+notes: >
+  Paired sister phrase with TP-0001. 'Acid' substituted by 'harsh'
+  across both amino and nucleic acid contexts by the same tool pass.

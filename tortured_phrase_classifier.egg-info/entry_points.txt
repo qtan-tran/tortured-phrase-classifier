@@ -1,0 +1,2 @@
+[console_scripts]
+tpc = tpc.cli:app
