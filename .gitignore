@@ -5,3 +5,6 @@ venv/
 *.json
 *.pdf
 huggingface/
+.pytest_cache/
+*.egg-info/
+retraction_watch.csv
