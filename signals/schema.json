@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tortured Phrase Signal",
+  "description": "Schema for a warrant-based tortured phrase signal in the TPC registry",
+  "type": "object",
+  "required": ["id", "tortured", "canonical", "domain", "status", "warrant"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^TP-[0-9]{4}$",
+      "description": "Unique signal identifier in format TP-XXXX"
+    },
+    "tortured": {
+      "type": "string",
+      "minLength": 2,
+      "description": "The tortured phrase as it appears in problematic papers"
+    },
+    "canonical": {
+      "type": "string",
+      "minLength": 2,
+      "description": "The correct scientific term that was replaced"
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["biochemistry", "computing", "medicine", "physics", "statistics", "general"],
+      "description": "Scientific domain of the canonical term"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["confirmed", "candidate", "deprecated"],
+      "description": "Warrant status: confirmed=all three warrant types satisfied"
+    },
+    "warrant": {
+      "type": "object",
+      "required": ["literary", "terminological", "statistical"],
+      "properties": {
+        "literary": {
+          "type": "object",
+          "required": ["satisfied", "independent_sightings", "evidence_dois"],
+          "properties": {
+            "satisfied": { "type": "boolean" },
+            "independent_sightings": { "type": "integer", "minimum": 0 },
+            "evidence_dois": {
+              "type": "array",
+              "items": { "type": "string" },
+              "minItems": 0
+            }
+          }
+        },
+        "terminological": {
+          "type": "object",
+          "required": ["satisfied"],
+          "properties": {
+            "satisfied": { "type": "boolean" },
+            "iso704_criteria": {
+              "type": "object",
+              "properties": {
+                "precision":       { "type": ["boolean", "null"] },
+                "economy":         { "type": ["boolean", "null"] },
+                "appropriateness": { "type": ["boolean", "null"] },
+                "consistency":     { "type": ["boolean", "null"] },
+                "transparency":    { "type": ["boolean", "null"] }
+              }
+            },
+            "domain_expert_orcid": { "type": ["string", "null"] },
+            "review_date":         { "type": ["string", "null"] }
+          }
+        },
+        "statistical": {
+          "type": "object",
+          "required": ["satisfied"],
+          "properties": {
+            "satisfied":           { "type": "boolean" },
+            "precision_on_clean":  { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+            "recall_on_retracted": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+            "eval_corpus_size":    { "type": ["integer", "null"] },
+            "eval_date":           { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "known_variants": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "prevalence": {
+      "type": "object",
+      "properties": {
+        "retracted_papers":  { "type": "integer", "minimum": 0 },
+        "legitimate_papers": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "paraphrase_tool_origin": { "type": ["string", "null"] },
+    "discovery_date":         { "type": "string" },
+    "discovered_by":          { "type": "string" },
+    "notes":                  { "type": ["string", "null"] }
+  }
+}
