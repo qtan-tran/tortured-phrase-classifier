@@ -150,10 +150,14 @@ tortured-phrase-classifier/
 ## Citation
 
 ```bibtex
-@software{tpc2024,
-  title = {Tortured Phrase Classifier},
-  year = {2024},
-  url = {https://github.com/your-org/tortured-phrase-classifier},
+@software{Tran_Terminological_Drift_2026,
+  author = {Tran, Quoc-Tan},
+  title = {{Terminological Drift and Adversarial Paraphrasing: A Warrant-Based Classification System for Detecting Tortured Phrases (Tortured Phrase Classifier)}},
+  month = {4},
+  year = {2026},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/qtan-tran/tortured-phrase-classifier}},
   license = {Apache-2.0}
 }
 ```
