@@ -8,7 +8,7 @@
 
 ## Overview
 
-Paper mills corrupt the terminological infrastructure of science by substituting established domain terms with semantically incoherent paraphrases — "tortured phrases." From a knowledge organization perspective, this constitutes **terminological drift**: the systematic severing of the concept-term bond that controlled vocabularies depend upon.
+Paper mills corrupt the terminological infrastructure of science by substituting established domain terms with semantically incoherent paraphrases — "tortured phrases." From a knowledge organization perspective, this constitutes **terminological drift**: the systematic severing of the concept-term bonds that controlled vocabularies depend upon.
 
 This project provides:
 
